@@ -3,4 +3,4 @@ Cecelia Freese
 
 This is my first document for one of Dr. Musick’s Media Arts courses.
 
-Ugh, what am I even doing with my life… 
+I added a new line to this file in my test editor.
