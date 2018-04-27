@@ -2,7 +2,7 @@
 let bimg;
 
 function preload(){
-  bimg = loadImage('./images/BGbackground.jpg');
+  bimg = loadImage('./Final Project/BGbackground.jpg');
 }
 
 function setup(){

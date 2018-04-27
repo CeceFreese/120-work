@@ -1,5 +1,5 @@
 let balls = [];
-const numOfBalls = 10;
+const numOfBalls = 20;
 
 function setup() {
     // createCanvas(windowWidth, windowHeight);
@@ -10,38 +10,38 @@ function setup() {
     let init_y = 60;
     for (let i = 0; i < numOfBalls; i++) {
         balls.push(new Ball(init_x, init_y));
-        // move the starting position
-        // each ball starts in a different spot
+        // move the starting position over
+        // This is to ensure that the balls do not start
+        // "on top" of each other
         init_x += 100;
         if (init_x > width) {
             init_x = 60;
-            init_y += 100;
+            init_y += 10;
         }
     }
 }
 
 function draw() {
-    background('rgb(102, 102, 0)');
+    background('rgb(66, 57, 66)');
 
     for (let i = 0; i < balls.length; i++) {
-        // call methods
+        // call the ball's methods
         balls[i].ballCheck(balls, i);
-        balls[i].edgeCheck(); //need
-        balls[i].move(); //need
-        balls[i].display(); //need
+        balls[i].edgeCheck();
+        balls[i].move();
+        balls[i].display();
     }
 }
 
 
-class Ball {
     constructor(x, y, size) {
-        this.color = 'rgb(160, 160, 160)';
-        this.size = 30;
+        this.color = 'red';
+        this.size = random(20, 80);
         this.rad = this.size / 2;
         this.posX = x;
         this.posY = y;
         this.deltaX = random(-5, 5);
-        this.deltaY = random(-5, 5);
+
     }
 
     display() {
@@ -58,20 +58,17 @@ class Ball {
 
     move() {
         this.posX += this.deltaX;
-        this.posY += this.deltaY;
+
     }
 
     edgeCheck() {
         // check if the ball has hit a vertical wall (left or right walls)
         if (this.posX + this.rad >= width || this.posX - this.rad <= 0) {
-            this.deltaX *= -1; //need
-        }
-        // check if the ball has hit a horizontal wall (top or bottom walls)
-        if (this.posY + this.rad >= height || this.posY - this.rad <= 0) {
-            this.deltaY *= -1;
-        }
-    }
+            this.deltaX *= -1;
 
+        }
+
+    }
 
     ballCheck(otherBalls, myId) {
         // for loop touches each of the balls in the array
@@ -82,11 +79,6 @@ class Ball {
                 let d = dist(this.posX, this.posY, otherBalls[n].posX, otherBalls[n].posY);
                 let combinedR = this.rad + otherBalls[n].rad;
 
-                if (d <= combinedR) {
-                    this.deltaX *= -1;
-                    this.deltaY *= -1;
-
-                }
             }
         }
     }
