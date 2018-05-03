@@ -57,7 +57,11 @@ for(var i = 0; i < circle.length; i++){
        this.x = random(0, windowWidth);
        this.y = 0;
        this.deltaY = random(0.5, 3);
-       this.color = ('pink');
+        if( this.color == ('white')){
+          this.color = ('pink');
+        } else {
+          this.color = ('white');
+        }
      }
    }
 }
